@@ -4,13 +4,14 @@
     "slug": "clearvue",
     "version": "1.0.0",
     "orientation": "portrait",
+    "backgroundColor": "#222222",
     "icon": "./assets/images/icon.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "splash": {
-      "image": "./assets/images/splash.png",
+      "image": "./assets/images/clearvueimg.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#000000"
     },
     "assetBundlePatterns": [
       "**/*"
