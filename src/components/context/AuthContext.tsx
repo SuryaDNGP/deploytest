@@ -3,6 +3,8 @@ import axios from 'axios';
 import { err } from 'react-native-svg/lib/typescript/xml';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useRouter } from 'expo-router';
+
+
 export const AuthContext = createContext({} as any);
 import {
   getAuth,
@@ -11,7 +13,7 @@ import {
   onAuthStateChanged,
   signOut,
 } from 'firebase/auth';
-import app from '../../config/firebase';
+import app from '../../utils/config/firebase';
 const INITIAL_STATE = {
   error: null,
   loading: false,
@@ -60,7 +62,7 @@ const AuthContextProvider: React.FC<any> = ({ children }) => {
   const isLoggedIn = () => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        router.replace('/home');
+        router.replace('/dashboard');
       }
     });
   };
@@ -100,28 +102,9 @@ const AuthContextProvider: React.FC<any> = ({ children }) => {
   const signOutAction = async () => {
     try {
       await signOut(auth);
-      router.replace('/(auth)')
+      router.replace('/(auth)');
     } catch (error) {
       console.log('Signing out error', error);
-    }
-  };
-
-  /** ADONIS BACKEND */
-  const registerUserAction = async (formData: any) => {
-    try {
-      const res = await axios.post(
-        'http://192.168.17.208:3333/api/v1/users/register',
-        formData
-      );
-      if (res.data) {
-        console.log(res.data);
-        dispatch({ type: 'REGISTER_SUCCESS', payload: res.data });
-        console.log('Registered Success');
-        router.replace('/(auth)/');
-      }
-    } catch (error) {
-      console.log('Register error', error);
-      dispatch({ type: 'REGISTER_FAILED', payload: error });
     }
   };
 
@@ -136,7 +119,7 @@ const AuthContextProvider: React.FC<any> = ({ children }) => {
 
     try {
       const res = await axios.post(
-        'http://192.168.17.208:3333/api/v1/users/login',
+        'http://192.168.155.208:3333/api/v1/users/login',
         formData
       );
       if (res.data) {

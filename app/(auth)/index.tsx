@@ -15,11 +15,16 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useForm, Controller } from 'react-hook-form';
 import { LinearGradient } from 'expo-linear-gradient';
-import { AuthContext } from '../../components/context/AuthContext';
+import { AuthContext } from '../../src/components/context/AuthContext';
+import { Spinner } from '@gluestack-ui/themed';
+
+import AuthAPIThunks from '../../src/store/thunks/authAPIThunks';
 
 export default function TabOneScreen() {
   const { loginUserAction, isLogin, signUpAction, signInAction, isLoggedIn } =
     useContext(AuthContext);
+
+  const { loginUser, isLoading } = AuthAPIThunks();
 
   const {
     control,
@@ -41,6 +46,8 @@ export default function TabOneScreen() {
   }, [formState, reset]);
 
   const handleSignIn = (data: any) => {
+    // loginUserAction(data)
+    // loginUser(data);
     signInAction(data).then(() => {
       isLoggedIn();
     });
@@ -58,13 +65,15 @@ export default function TabOneScreen() {
         height: '100%',
       }}
     >
+      {isLoading && <Spinner size="large" />}
+
       <Box height="$full" margin={24} justifyContent="space-between">
         <Box marginTop={130}>
           <HStack style={{ justifyContent: 'center', marginBottom: 50 }}>
             <Image
               height={100}
               resizeMode="contain"
-              source={require('../../assets/images/clearvueimg.png')}
+              source={require('../../src/assets/images/clearvueimg.png')}
               alt="logo"
             />
           </HStack>
