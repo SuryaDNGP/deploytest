@@ -11,8 +11,8 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Stack } from 'expo-router';
 import { useForm, Controller } from 'react-hook-form';
+import { AuthContext } from '../components/context/AuthContext';
 
-import { AuthContext } from '../src/components/context/AuthContext';
 
 export default function TabOneScreen() {
   const { signOutAction } = useContext(AuthContext);

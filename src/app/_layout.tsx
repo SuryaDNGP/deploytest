@@ -3,10 +3,13 @@ import { useFonts } from 'expo-font';
 import { SplashScreen, Stack } from 'expo-router';
 import { useEffect } from 'react';
 import { GluestackUIProvider, Theme } from '@gluestack-ui/themed';
-import { config } from '../ gluestack-ui.config';
-import AuthContextProvider from '../src/components/context/AuthContext';
+import { config } from '../../ gluestack-ui.config';
+
+import AuthContextProvider from '../../src/components/context/AuthContext';
 import { Provider } from 'react-redux';
-import { store } from '../src/store/store';
+import { store } from '../../src/store/store';
+import { registerRootComponent } from 'expo';
+import { ExpoRoot } from 'expo-router';
 export {
   // Catch any errors thrown by the Layout component.
   ErrorBoundary,
@@ -22,7 +25,7 @@ SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const [loaded, error] = useFonts({
-    Rubik: require('../src/assets/fonts/Rubik-VariableFont_wght.ttf'),
+    Rubik: require('../assets/fonts/Rubik-VariableFont_wght.ttf'),
     ...FontAwesome.font,
   });
 
@@ -59,3 +62,4 @@ function RootLayoutNav() {
     </GluestackUIProvider>
   );
 }
+

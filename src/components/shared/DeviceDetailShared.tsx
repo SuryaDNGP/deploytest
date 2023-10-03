@@ -7,7 +7,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 const DeviceDetailShared: React.FC<any> = ({ device, status, title }) => {
   return (
     <LinearGradient
-      style={{ borderRadius: 6 }}
+      style={{ borderRadius: 6, marginBottom: 10 }}
       colors={['#F2F2F21A', '#BEB5B51A']}
     >
       <Box paddingVertical={20} paddingHorizontal={24}>

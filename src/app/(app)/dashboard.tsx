@@ -1,5 +1,6 @@
 import React from 'react';
-import { DashboardScreen } from '../../src/screens';
+
+import { DashboardScreen } from '../../screens';
 
 export default function Dashboard() {
   return <DashboardScreen />;
