@@ -24,6 +24,7 @@ const ChartCarousel = () => {
     <>
       <View>
         <Carousel
+          onSnapToItem={(index) => setIndex(index)}
           layout="default"
           ref={isCarousel}
           data={data}
@@ -32,7 +33,7 @@ const ChartCarousel = () => {
           itemWidth={width}
           inactiveSlideShift={0}
           useScrollView={true}
-          onSnapToItem={(index) => setIndex(index)}
+        
         />
         <Pagination
           carouselRef={isCarousel}

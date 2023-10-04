@@ -31,7 +31,9 @@ import DeviceDetailShared from '../../components/shared/DeviceDetailShared';
 import InteractiveChart from './charts';
 import ChartCarousel from './Carousel';
 import SwipeCarousel from './SwipeCarousel';
+import { useRouter } from 'expo-router';
 export default function DashboardScreen() {
+  const router = useRouter();
   const { signOutAction } = useContext(AuthContext);
   const [buttonType, setButtonType] = useState('Production Floor');
   const deviceList = [
@@ -105,7 +107,12 @@ export default function DashboardScreen() {
             />
           </HStack>
           <LinearGradient
-            style={{ borderRadius: 6, marginBottom: 10, marginTop: 12, marginHorizontal: 8 }}
+            style={{
+              borderRadius: 6,
+              marginBottom: 10,
+              marginTop: 12,
+              marginHorizontal: 8,
+            }}
             colors={['#F2F2F21A', '#BEB5B51A']}
           >
             <Box>
@@ -156,14 +163,14 @@ export default function DashboardScreen() {
             </Button>
           </LinearGradient>
         </Box>
-        {/* <Text>Home Page</Text>
-      <Button
-        onPress={() => {
-          signOutAction();
-        }}
-      >
-        <ButtonText>LOGOUT</ButtonText>
-      </Button> */}
+        <Text>Home Page</Text>
+        <Button
+          onPress={() => {
+            router.push('/new');
+          }}
+        >
+          <ButtonText>LOGOUT</ButtonText>
+        </Button>
       </ScrollView>
     </SafeAreaView>
   );
