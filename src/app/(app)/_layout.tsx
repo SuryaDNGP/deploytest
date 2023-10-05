@@ -1,12 +1,13 @@
 import { Stack } from 'expo-router';
 
 import React from 'react';
+import { Drawer } from 'expo-router/drawer';
 
 const ScreensLayout = () => {
   return (
-    <Stack>
-      <Stack.Screen name="index" options={{ headerShown: false }} />
-    </Stack>
+    <Drawer initialRouteName='dashboard'  >
+      <Drawer.Screen name="dashboard" options={{ headerShown: false }} />
+    </Drawer>
   );
 };
 

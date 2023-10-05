@@ -1,5 +1,5 @@
-import React, { useEffect, useState, useContext } from "react";
-import { StyleSheet } from "react-native";
+import React, { useEffect, useState, useContext } from 'react';
+import { StyleSheet } from 'react-native';
 import {
   Text,
   Box,
@@ -16,47 +16,50 @@ import {
   BadgeText,
   EditIcon,
   AddIcon,
-} from "@gluestack-ui/themed";
-import { LinearGradient } from "expo-linear-gradient";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { Stack } from "expo-router";
-import { AuthContext } from "../../components/context/AuthContext";
-import { COLORS } from "../../constants";
+} from '@gluestack-ui/themed';
+import { LinearGradient } from 'expo-linear-gradient';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { Stack } from 'expo-router';
+import { AuthContext } from '../../components/context/AuthContext';
+import { COLORS } from '../../constants';
 import {
   FlatList,
   ScrollView,
   TouchableOpacity,
-} from "react-native-gesture-handler";
-import DeviceDetailShared from "../../components/shared/DeviceDetailShared";
-import InteractiveChart from "./charts";
-import ChartCarousel from "./Carousel";
+} from 'react-native-gesture-handler';
+import DeviceDetailShared from '../../components/shared/DeviceDetailShared';
+import InteractiveChart from './charts';
+import ChartCarousel from './Carousel';
+import SwipeCarousel from './SwipeCarousel';
+import { useRouter } from 'expo-router';
 export default function DashboardScreen() {
+  const router = useRouter();
   const { signOutAction } = useContext(AuthContext);
-  const [buttonType, setButtonType] = useState("Production Floor");
+  const [buttonType, setButtonType] = useState('Production Floor');
   const deviceList = [
     {
-      status: "active",
-      title: "S102",
+      status: 'active',
+      title: 'S102',
       data: {
-        temp: "24",
-        pressure: "1004",
-        humidity: "74",
-        light: "74",
+        temp: '24',
+        pressure: '1004',
+        humidity: '74',
+        light: '74',
       },
     },
     {
-      status: "inactive",
-      title: "S103",
+      status: 'inactive',
+      title: 'S103',
       data: {},
     },
     {
-      status: "active",
-      title: "S104",
+      status: 'active',
+      title: 'S104',
       data: {
-        temp: "24",
-        pressure: "1004",
-        humidity: "72",
-        light: "720",
+        temp: '24',
+        pressure: '1004',
+        humidity: '72',
+        light: '720',
       },
     },
   ];
@@ -83,7 +86,7 @@ export default function DashboardScreen() {
           <HStack>
             <FlatList
               horizontal
-              data={["Production Floor", "Warehouse", "Boiler Room"]}
+              data={['Production Floor', 'Warehouse', 'Boiler Room']}
               renderItem={({ item }) => (
                 <Button
                   marginRight={12}
@@ -104,10 +107,15 @@ export default function DashboardScreen() {
             />
           </HStack>
           <LinearGradient
-            style={{ borderRadius: 6, marginBottom: 10, marginTop: 12 }}
-            colors={["#F2F2F21A", "#BEB5B51A"]}
+            style={{
+              borderRadius: 6,
+              marginBottom: 10,
+              marginTop: 12,
+              marginHorizontal: 8,
+            }}
+            colors={['#F2F2F21A', '#BEB5B51A']}
           >
-            <Box margin={8}>
+            <Box>
               <HStack
                 marginTop={22}
                 marginHorizontal={8}
@@ -118,6 +126,7 @@ export default function DashboardScreen() {
                 </Text>
                 <Text color={COLORS.green}>Show more</Text>
               </HStack>
+              {/* <SwipeCarousel /> */}
               <ChartCarousel />
             </Box>
           </LinearGradient>
@@ -139,14 +148,14 @@ export default function DashboardScreen() {
             )}
           />
         </Box>
-        <Box alignItems="center" marginBottom={16} marginTop={8} >
+        <Box alignItems="center" marginBottom={16} marginTop={8}>
           <LinearGradient
             style={{
               borderRadius: 10,
               width: 200,
               paddingVertical: 4,
             }}
-            colors={["#F2F2F21A", "#BEB5B51A"]}
+            colors={['#F2F2F21A', '#BEB5B51A']}
           >
             <Button variant="outline" borderWidth={0}>
               <ButtonIcon color="white" as={AddIcon} mr="$2" />
@@ -154,14 +163,14 @@ export default function DashboardScreen() {
             </Button>
           </LinearGradient>
         </Box>
-        {/* <Text>Home Page</Text>
-      <Button
-        onPress={() => {
-          signOutAction();
-        }}
-      >
-        <ButtonText>LOGOUT</ButtonText>
-      </Button> */}
+        <Text>Home Page</Text>
+        <Button
+          onPress={() => {
+            router.push('/new');
+          }}
+        >
+          <ButtonText>LOGOUT</ButtonText>
+        </Button>
       </ScrollView>
     </SafeAreaView>
   );
