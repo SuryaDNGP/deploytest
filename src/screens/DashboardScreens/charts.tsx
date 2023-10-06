@@ -245,7 +245,8 @@ function InteractiveChart({ chartColor }: any) {
           // width: DeviceWidth,
           // width: '100%',
           // paddingRight: 20,
-          height: apx(570),
+          // height: apx(400),
+          height: 400,
           alignSelf: 'stretch',
         }}
       >
@@ -266,7 +267,7 @@ function InteractiveChart({ chartColor }: any) {
           <GestureDetector gesture={pan}>
             <View>
               <AreaChart
-                style={{ flex: 1, width: DeviceWidth - 16 }}
+                style={{ flex: 1, width: DeviceWidth - 30 }}
                 data={priceList}
                 // curve={shape.curveNatural}
                 curve={shape.curveMonotoneX}
@@ -286,7 +287,7 @@ function InteractiveChart({ chartColor }: any) {
                   // marginTop: apx(57),
                   // width: '100%',
                   // width: apx(globalChartWidth),
-                  width: DeviceWidth,
+                  width: DeviceWidth - 30,
                   height: apx(60),
                   // height: apx(60),
                   borderColor: chartColor,
@@ -300,7 +301,7 @@ function InteractiveChart({ chartColor }: any) {
                   // right: apx(130),
                 }}
                 svg={{
-                  fontSize: apx(20),
+                  fontSize: 16,
                   fill: '#617485',
                   y: apx(20),
                   // originY: 30,
